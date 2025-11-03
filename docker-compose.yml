@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  catalog1:
+    build: ./catalog-service
+    container_name: catalog1
+    environment:
+      - PORT=3000
+      - SEED_BOOKS=true
+    expose:
+      - "3000"
+
+  catalog2:
+    build: ./catalog-service
+    container_name: catalog2
+    environment:
+      - PORT=3000
+      - SEED_BOOKS=true
+    expose:
+      - "3000"
+
+  load-balancer:
+    image: nginx:alpine
+    container_name: load-balancer
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./load-balancer/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - catalog1
+      - catalog2
+
+  sales-service:
+    build: ./sales-service
+    container_name: sales-service
+    environment:
+      - PORT=4000
+      - CATALOG_BASE_URL=http://load-balancer:3000
+    ports:
+      - "4000:4000"
+    depends_on:
+      - load-balancer
+
+networks:
+  default:
+    name: microservices-books-net

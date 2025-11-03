@@ -1,0 +1,13 @@
+{
+  "name": "catalog-service",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/infrastructure/server.js",
+  "scripts": {
+    "start": "node src/infrastructure/server.js",
+    "dev": "node --watch src/infrastructure/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
