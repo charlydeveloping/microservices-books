@@ -1,5 +1,5 @@
 // src/infrastructure/InMemorySaleRepository.js
-// Repositorio en memoria de ventas
+// Repositorio en memoria para ventas
 
 export class InMemorySaleRepository {
   constructor() {

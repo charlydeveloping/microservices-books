@@ -8,6 +8,11 @@ import { buildCatalogRouter } from './routes.js';
 const app = express();
 app.use(express.json());
 
+app.use((req, res, next) => {
+  console.log(`[${process.env.HOSTNAME}] ${req.method} ${req.url}`);
+  next();
+});
+
 const bookRepository = new InMemoryBookRepository();
 
 app.get('/health', (_req, res) => res.json({ status: 'ok' }));
