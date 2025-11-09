@@ -4,6 +4,12 @@
 import express from 'express';
 import { InMemoryBookRepository } from './InMemoryBookRepository.js';
 import { buildCatalogRouter } from './routes.js';
+import { startConsumer } from "./kafka/consumer.js";
+
+// Start Kafka consumer but don't block express startup
+startConsumer().catch((e) => {
+  console.error("Initial Kafka consumer start failed", e);
+});
 
 const app = express();
 app.use(express.json());

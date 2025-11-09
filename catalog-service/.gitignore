@@ -1,0 +1,90 @@
+# ============================================
+# Node & Express Backend .gitignore
+# ============================================
+
+# Dependencias
+/node_modules/
+
+# Archivos de logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+logs/
+*.log
+*.out
+*.pid
+*.seed
+*.pid.lock
+
+# Archivos temporales y de cache
+.tmp/
+temp/
+.cache/
+coverage/
+.nyc_output/
+
+# Builds
+dist/
+build/
+out/
+.esbuild/
+
+# Configuración del entorno
+.env
+.env.*.local
+.env.local
+.env.test
+.env.development
+.env.production
+.envrc
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# IDEs y editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+
+# Configuración de pruebas
+jest.config.js.map
+test-results/
+coverage-final.json
+
+# Archivos de bases de datos locales o seeds
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+/prisma/dev.db
+
+# Docker
+docker-compose.override.yml
+*.pid
+*.seed
+docker-data/
+.docker/
+
+# Archivos de implementación / despliegue
+/.env.production
+/.env.staging
+deploy/
+*.pem
+*.key
+
+# Otros
+*.tgz
+*.zip
+*.tar
+*.tar.gz
+
+# ============================================
+# Fin del archivo
+# ============================================

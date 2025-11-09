@@ -8,6 +8,7 @@
     "dev": "node --watch src/infrastructure/server.js"
   },
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "kafkajs": "^2.2.4"
   }
 }

@@ -5,6 +5,12 @@ import express from 'express';
 import { InMemorySaleRepository } from './InMemorySaleRepository.js';
 import { createCatalogGateway } from './http/catalogClient.js';
 import { buildSalesRouter } from './routes.js';
+import { connectProducer } from './kafka/producer.js';
+
+// Start Kafka producer but don't block express startup
+connectProducer().catch((e) => {
+  console.error("Initial Kafka producer start failed", e);
+});
 
 const app = express();
 app.use(express.json());

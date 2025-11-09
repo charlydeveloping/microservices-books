@@ -7,6 +7,10 @@ services:
     environment:
       - PORT=3000
       - SEED_BOOKS=true
+      - KAFKA_BROKERS=kafka:9092
+      - KAFKA_CLIENT_ID=catalog-service
+      - KAFKA_GROUP_ID=catalog-group
+      - KAFKA_TOPIC_SALES=sales-events
     expose:
       - "3000"
     # healthcheck:
@@ -15,6 +19,8 @@ services:
     #   timeout: 3s
     #   retries: 5
     restart: always
+    depends_on:
+      - kafka
 
   catalog2:
     build: ./catalog-service
@@ -22,6 +28,10 @@ services:
     environment:
       - PORT=3000
       - SEED_BOOKS=true
+      - KAFKA_BROKERS=kafka:9092
+      - KAFKA_CLIENT_ID=catalog-service
+      - KAFKA_GROUP_ID=catalog-group
+      - KAFKA_TOPIC_SALES=sales-events
     expose:
       - "3000"
     # healthcheck:
@@ -30,6 +40,8 @@ services:
     #   timeout: 3s
     #   retries: 5
     restart: always
+    depends_on:
+      - kafka
 
   load-balancer:
     image: nginx:alpine
@@ -51,11 +63,36 @@ services:
     environment:
       - PORT=4000
       - CATALOG_BASE_URL=http://load-balancer:3000
+      - KAFKA_BROKERS=kafka:9092
+      - KAFKA_CLIENT_ID=sales-service
+      - KAFKA_TOPIC_SALES=sales-events
     ports:
       - "4000:4000"
     depends_on:
       - load-balancer
+      - kafka
     restart: always
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_CREATE_TOPICS: "sales-events:1:1"
+    depends_on:
+      - zookeeper
 
 networks:
   default:
