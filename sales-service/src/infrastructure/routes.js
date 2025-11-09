@@ -32,6 +32,10 @@ export function buildSalesRouter({ saleRepository, catalogGateway }) {
         return res.status(404).json({ message: err.message });
       if (err.code === "CATALOG_UNAVAILABLE")
         return res.status(503).json({ message: err.message });
+      if (err.code === "INSUFFICIENT_STOCK")
+        return res.status(409).json({ message: err.message });
+      if (err.code === "INVALID_QTY")
+        return res.status(400).json({ message: err.message });
       res.status(400).json({ message: err.message });
     }
   });

@@ -35,7 +35,17 @@ export async function startConsumer({ retryDelayMs = 2000 } = {}) {
         eachMessage: async ({ topic, partition, message }) => {
           try {
             const sale = JSON.parse(message.value.toString());
-            console.log(`Sale received in catalog: ${sale.id} (book ${sale.bookId})`);
+            const { bookId, quantity } = sale;
+            if (!global.bookRepository) {
+              console.warn("Book repository not set yet; skipping stock decrement");
+              return;
+            }
+            try {
+              await global.bookRepository.decrementQuantity(bookId, quantity);
+              console.log(`Stock decremented for book ${bookId} by ${quantity}`);
+            } catch (stockErr) {
+              console.error(`Failed to decrement stock for book ${bookId}`, stockErr.code || stockErr.message);
+            }
           } catch (e) {
             console.error("Failed to process Kafka message", e);
           }

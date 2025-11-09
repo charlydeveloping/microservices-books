@@ -3,6 +3,8 @@
 
 import express from 'express';
 import { InMemorySaleRepository } from './InMemorySaleRepository.js';
+import { PostgresSaleRepository } from './PostgresSaleRepository.js';
+import { ensureSchema } from './db/pool.js';
 import { createCatalogGateway } from './http/catalogClient.js';
 import { buildSalesRouter } from './routes.js';
 import { connectProducer } from './kafka/producer.js';
@@ -20,7 +22,15 @@ app.use((req, res, next) => {
   next();
 });
 
-const saleRepository = new InMemorySaleRepository();
+let saleRepository;
+if (process.env.DATABASE_URL || process.env.PGHOST) {
+  await ensureSchema();
+  saleRepository = new PostgresSaleRepository();
+  console.log('Using PostgresSaleRepository');
+} else {
+  saleRepository = new InMemorySaleRepository();
+  console.log('Using InMemorySaleRepository');
+}
 const catalogGateway = createCatalogGateway();
 
 app.get('/health', (_req, res) => res.json({ status: 'ok' }));

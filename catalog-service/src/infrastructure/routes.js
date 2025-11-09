@@ -29,8 +29,8 @@ export function buildCatalogRouter({ bookRepository }) {
   // POST /books
   router.post('/books', async (req, res) => {
     try {
-      const { title, price } = req.body || {};
-      const created = await registerBook.execute({ title, price });
+      const { title, price, quantity = 0 } = req.body || {};
+      const created = await registerBook.execute({ title, price, quantity });
       res.status(201).json(created);
     } catch (err) {
       res.status(400).json({ message: err.message });

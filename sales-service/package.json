@@ -12,6 +12,7 @@
     "axios-retry": "^3.9.1",
     "express": "^4.19.2",
     "kafkajs": "^2.2.4",
-    "opossum": "^8.0.1"
+    "opossum": "^8.0.1",
+    "pg": "^8.11.5"
   }
 }

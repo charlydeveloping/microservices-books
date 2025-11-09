@@ -11,6 +11,7 @@ services:
       - KAFKA_CLIENT_ID=catalog-service
       - KAFKA_GROUP_ID=catalog-group
       - KAFKA_TOPIC_SALES=sales-events
+      - DATABASE_URL=postgres://catalog:catalog@catalog-db:5432/catalogdb
     expose:
       - "3000"
     # healthcheck:
@@ -32,6 +33,7 @@ services:
       - KAFKA_CLIENT_ID=catalog-service
       - KAFKA_GROUP_ID=catalog-group
       - KAFKA_TOPIC_SALES=sales-events
+      - DATABASE_URL=postgres://catalog:catalog@catalog-db:5432/catalogdb
     expose:
       - "3000"
     # healthcheck:
@@ -66,11 +68,14 @@ services:
       - KAFKA_BROKERS=kafka:9092
       - KAFKA_CLIENT_ID=sales-service
       - KAFKA_TOPIC_SALES=sales-events
+      - DATABASE_URL=postgres://sales:sales@sales-db:5432/salesdb
     ports:
       - "4000:4000"
     depends_on:
       - load-balancer
       - kafka
+      - catalog-db
+      - sales-db
     restart: always
 
   zookeeper:
@@ -94,6 +99,34 @@ services:
     depends_on:
       - zookeeper
 
+  catalog-db:
+    image: postgres:16-alpine
+    container_name: catalog-db
+    environment:
+      POSTGRES_DB: catalogdb
+      POSTGRES_USER: catalog
+      POSTGRES_PASSWORD: catalog
+    ports:
+      - "5433:5432"
+    volumes:
+      - catalog-db-data:/var/lib/postgresql/data
+
+  sales-db:
+    image: postgres:16-alpine
+    container_name: sales-db
+    environment:
+      POSTGRES_DB: salesdb
+      POSTGRES_USER: sales
+      POSTGRES_PASSWORD: sales
+    ports:
+      - "5434:5432"
+    volumes:
+      - sales-db-data:/var/lib/postgresql/data
+
 networks:
   default:
     name: microservices-books-net
+
+volumes:
+  catalog-db-data:
+  sales-db-data:

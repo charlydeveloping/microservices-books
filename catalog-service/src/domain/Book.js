@@ -4,13 +4,14 @@
 import crypto from 'node:crypto';
 
 export class Book {
-  constructor({ id, title, price }) {
+  constructor({ id, title, price, quantity = 0 }) {
     this.id = id;
     this.title = title;
     this.price = price;
+    this.quantity = quantity; // stock disponible
   }
 
-  static create({ title, price }) {
+  static create({ title, price, quantity = 0 }) {
     if (!title || typeof title !== 'string') {
       throw new Error('Invalid title');
     }
@@ -18,6 +19,10 @@ export class Book {
     if (!Number.isFinite(nPrice) || nPrice < 0) {
       throw new Error('Invalid price');
     }
-    return new Book({ id: crypto.randomUUID(), title: title.trim(), price: nPrice });
+    const qty = Number(quantity);
+    if (!Number.isFinite(qty) || qty < 0 || !Number.isInteger(qty)) {
+      throw new Error('Invalid quantity');
+    }
+    return new Book({ id: crypto.randomUUID(), title: title.trim(), price: nPrice, quantity: qty });
   }
 }

@@ -16,7 +16,18 @@ export class CreateSale {
       err.code = 'BOOK_NOT_FOUND';
       throw err;
     }
-    const sale = Sale.create({ bookId, quantity, unitPrice: book.price });
+    const qty = Number(quantity);
+    if (!Number.isInteger(qty) || qty <= 0) {
+      const err = new Error('quantity must be a positive integer');
+      err.code = 'INVALID_QTY';
+      throw err;
+    }
+    if (typeof book.quantity === 'number' && book.quantity < qty) {
+      const err = new Error('Insufficient stock');
+      err.code = 'INSUFFICIENT_STOCK';
+      throw err;
+    }
+    const sale = Sale.create({ bookId, quantity: qty, unitPrice: book.price });
     await this.saleRepository.save(sale);
     return sale;
   }

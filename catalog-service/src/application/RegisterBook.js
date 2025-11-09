@@ -7,8 +7,8 @@ export class RegisterBook {
     this.bookRepository = bookRepository;
   }
 
-  async execute({ title, price }) {
-    const book = Book.create({ title, price });
+  async execute({ title, price, quantity = 0 }) {
+    const book = Book.create({ title, price, quantity });
     return this.bookRepository.save(book);
   }
 }
