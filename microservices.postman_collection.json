@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "eec70cb1-dcd5-4e97-9eb5-9ae8a5e267f7",
+		"name": "Books Microservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12883908",
+		"_collection_link": "https://winter-satellite-861308.postman.co/workspace/Programacion~a60745bd-860a-46e2-87df-e5b088e51d9a/collection/12883908-eec70cb1-dcd5-4e97-9eb5-9ae8a5e267f7?action=share&source=collection_link&creator=12883908"
+	},
+	"item": [
+		{
+			"name": "sales",
+			"item": [
+				{
+					"name": "sales",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJJdnNHSjhSWGxkMnpkTjZaaTUtTTBlcl9sS0ZKMkg3NnJ6bnNTN3lBTWdzIn0.eyJleHAiOjE3NjI5ODYwODcsImlhdCI6MTc2Mjk4MjQ4NywianRpIjoiYjBjZDUzZWEtY2E1MC00ZjE0LTkwN2UtNGJkMTM5MGY3OTA1IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9taWNyb3NlcnZpY2VzIiwic3ViIjoiNzVkNGRiMDYtM2Q5OS00MTg4LWI2M2EtNTI0ZTU0MTJhNzlmIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYm9va3MtY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6ImZkZWQ4NzI5LTliMjAtNDk0Yi05MzFkLWJjNTFhNjNjMWQyZiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiKiJdLCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJzaWQiOiJmZGVkODcyOS05YjIwLTQ5NGItOTMxZC1iYzUxYTYzYzFkMmYiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IlRlc3QgVXNlciIsInByZWZlcnJlZF91c2VybmFtZSI6InRlc3R1c2VyIiwiZ2l2ZW5fbmFtZSI6IlRlc3QiLCJmYW1pbHlfbmFtZSI6IlVzZXIiLCJlbWFpbCI6InRlc3R1c2VyQHRlc3QuY29tIn0.SgM-jN-Av4Wt8CRbuz1XsUekFSJcsMGZ6Y04K7_s7Qho6RALUV55-siUTc1Ku-hMiF2olRwusCUhnqmDAp0KTLUXpESnYt_XePfWuir8OLY27CpqXCbvtjKTfy-Q41qe_eXOOtSUFkNXroH0EfcduaMhgqu1AxiblLCMyM4hNTE6pkpUFCbuXAgIWmnsde26NirWoY2aDLkRiI8kYD1Iae25FW6hPqwt4EONwhjnv-H4R3zgcr6ZND7NoZfflMd-5Ib1Blz61Q6gCoOucONoo8XoNTQqWLwdI0t-cdQc2bJcExGsCmyOUXhW-YTeZq4iQQ8PZmOTy0qCAsNXSEmgPw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/sales",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"sales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createSale",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJJdnNHSjhSWGxkMnpkTjZaaTUtTTBlcl9sS0ZKMkg3NnJ6bnNTN3lBTWdzIn0.eyJleHAiOjE3NjI5ODYwODcsImlhdCI6MTc2Mjk4MjQ4NywianRpIjoiYjBjZDUzZWEtY2E1MC00ZjE0LTkwN2UtNGJkMTM5MGY3OTA1IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9taWNyb3NlcnZpY2VzIiwic3ViIjoiNzVkNGRiMDYtM2Q5OS00MTg4LWI2M2EtNTI0ZTU0MTJhNzlmIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYm9va3MtY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6ImZkZWQ4NzI5LTliMjAtNDk0Yi05MzFkLWJjNTFhNjNjMWQyZiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiKiJdLCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJzaWQiOiJmZGVkODcyOS05YjIwLTQ5NGItOTMxZC1iYzUxYTYzYzFkMmYiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IlRlc3QgVXNlciIsInByZWZlcnJlZF91c2VybmFtZSI6InRlc3R1c2VyIiwiZ2l2ZW5fbmFtZSI6IlRlc3QiLCJmYW1pbHlfbmFtZSI6IlVzZXIiLCJlbWFpbCI6InRlc3R1c2VyQHRlc3QuY29tIn0.SgM-jN-Av4Wt8CRbuz1XsUekFSJcsMGZ6Y04K7_s7Qho6RALUV55-siUTc1Ku-hMiF2olRwusCUhnqmDAp0KTLUXpESnYt_XePfWuir8OLY27CpqXCbvtjKTfy-Q41qe_eXOOtSUFkNXroH0EfcduaMhgqu1AxiblLCMyM4hNTE6pkpUFCbuXAgIWmnsde26NirWoY2aDLkRiI8kYD1Iae25FW6hPqwt4EONwhjnv-H4R3zgcr6ZND7NoZfflMd-5Ib1Blz61Q6gCoOucONoo8XoNTQqWLwdI0t-cdQc2bJcExGsCmyOUXhW-YTeZq4iQQ8PZmOTy0qCAsNXSEmgPw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bookId\": \"d0f19109-5ac3-4545-bb1b-944af386ce44\",\n    \"quantity\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/sales",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"sales"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "catalog",
+			"item": [
+				{
+					"name": "books",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJJdnNHSjhSWGxkMnpkTjZaaTUtTTBlcl9sS0ZKMkg3NnJ6bnNTN3lBTWdzIn0.eyJleHAiOjE3NjI5ODYwODcsImlhdCI6MTc2Mjk4MjQ4NywianRpIjoiYjBjZDUzZWEtY2E1MC00ZjE0LTkwN2UtNGJkMTM5MGY3OTA1IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9taWNyb3NlcnZpY2VzIiwic3ViIjoiNzVkNGRiMDYtM2Q5OS00MTg4LWI2M2EtNTI0ZTU0MTJhNzlmIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYm9va3MtY2xpZW50Iiwic2Vzc2lvbl9zdGF0ZSI6ImZkZWQ4NzI5LTliMjAtNDk0Yi05MzFkLWJjNTFhNjNjMWQyZiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiKiJdLCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJzaWQiOiJmZGVkODcyOS05YjIwLTQ5NGItOTMxZC1iYzUxYTYzYzFkMmYiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IlRlc3QgVXNlciIsInByZWZlcnJlZF91c2VybmFtZSI6InRlc3R1c2VyIiwiZ2l2ZW5fbmFtZSI6IlRlc3QiLCJmYW1pbHlfbmFtZSI6IlVzZXIiLCJlbWFpbCI6InRlc3R1c2VyQHRlc3QuY29tIn0.SgM-jN-Av4Wt8CRbuz1XsUekFSJcsMGZ6Y04K7_s7Qho6RALUV55-siUTc1Ku-hMiF2olRwusCUhnqmDAp0KTLUXpESnYt_XePfWuir8OLY27CpqXCbvtjKTfy-Q41qe_eXOOtSUFkNXroH0EfcduaMhgqu1AxiblLCMyM4hNTE6pkpUFCbuXAgIWmnsde26NirWoY2aDLkRiI8kYD1Iae25FW6hPqwt4EONwhjnv-H4R3zgcr6ZND7NoZfflMd-5Ib1Blz61Q6gCoOucONoo8XoNTQqWLwdI0t-cdQc2bJcExGsCmyOUXhW-YTeZq4iQQ8PZmOTy0qCAsNXSEmgPw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"Las Mil y Una Noches\",\n    \"price\":25.4\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RegisterBook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"title\": \"Como hacer que te pasen buenas cosas\", \"price\": 10.5, \"quantity\": 15 }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "books-client",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "booksecret123",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "testuser",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/realms/microservices/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"realms",
+								"microservices",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -5,6 +5,7 @@ import { Router } from "express";
 import { ListSales } from "../application/ListSales.js";
 import { CreateSale } from "../application/CreateSale.js";
 import { connectProducer, publishSaleEvent } from "./kafka/producer.js";
+import { authenticateToken } from './middleware/authMiddleware.js';
 
 export function buildSalesRouter({ saleRepository, catalogGateway }) {
   const router = Router();
@@ -13,13 +14,13 @@ export function buildSalesRouter({ saleRepository, catalogGateway }) {
   const createSale = new CreateSale({ saleRepository, catalogGateway });
 
   // GET /sales
-  router.get("/sales", async (_req, res) => {
+  router.get("/sales", authenticateToken, async (_req, res) => {
     const sales = await listSales.execute();
     res.json(sales);
   });
   
   // POST /sales
-  router.post("/sales", async (req, res) => {
+  router.post("/sales", authenticateToken, async (req, res) => {
     try {
       const { bookId, quantity } = req.body || {};
       const sale = await createSale.execute({ bookId, quantity });
