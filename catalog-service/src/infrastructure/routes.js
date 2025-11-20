@@ -27,6 +27,13 @@ export function buildCatalogRouter({ bookRepository }) {
     res.json(book);
   });
 
+  // GET /internal/books/:id - Endpoint interno sin autenticación para comunicación entre microservicios
+  router.get('/internal/books/:id', async (req, res) => {
+    const book = await getBookById.execute({ id: req.params.id });
+    if (!book) return res.status(404).json({ message: 'Book not found' });
+    res.json(book);
+  });
+
   // POST /books
   router.post('/books', authenticateToken, async (req, res) => {
     try {

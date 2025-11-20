@@ -19,7 +19,7 @@ axiosRetry(http, {
 });
 
 async function getBookByIdRaw(id) {
-  const res = await http.get(`/books/${id}`);
+  const res = await http.get(`/internal/books/${id}`);
   return res.data;
 }
 
